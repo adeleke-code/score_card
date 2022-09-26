@@ -33,6 +33,8 @@ SECRET_KEY = os.getenv("MYKEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ['score-card2.herokuapp.com']
+# ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -133,6 +135,7 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
@@ -143,12 +146,15 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "/media/"
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / "media"
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudStorage"
 
 
 # Default primary key field type
@@ -157,3 +163,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.CustomUser'
+
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME':
+# }
