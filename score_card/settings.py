@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import cloudinary_storage
 from dotenv import find_dotenv, load_dotenv
 import dj_database_url
 
@@ -32,8 +33,8 @@ SECRET_KEY = os.getenv("MYKEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['score-card2.herokuapp.com']
-# ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['score-card2.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'rest_framework',
+    'cloudinary',
+    'cloudinary_storage',
     'account',
     'candidates',
     'scores'
@@ -154,7 +157,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudStorage"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 
 # Default primary key field type
@@ -165,6 +168,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.CustomUser'
 
 
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME':
-# }
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv("CLOUD_NAME"),
+    'API_KEY': os.getenv("API_KEY"),
+    'API_SECRET': os.getenv("API_SECRET")
+}
